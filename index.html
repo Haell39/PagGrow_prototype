@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PagGrow - Educação Financeira</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Configuração de cores e fontes para Tailwind */
+      :root {
+        --pagbank-yellow: #ffd700; /* Amarelo vibrante, similar ao PagBank */
+        --pagbank-dark-blue: #007b8a; /* Azul/verde escuro para detalhes */
+        --pagbank-light-gray: #f5f5f5;
+        --pagbank-text-dark: #333333;
+      }
+
+      body {
+        font-family: "Inter", sans-serif; /* Fonte Inter */
+        background-color: var(--pagbank-light-gray);
+        color: var(--pagbank-text-dark);
+      }
+
+      /* Classes Tailwind personalizadas para as cores do PagBank */
+      .bg-pagbank-yellow {
+        background-color: var(--pagbank-yellow);
+      }
+      .text-pagbank-yellow {
+        color: var(--pagbank-yellow);
+      }
+      .bg-pagbank-dark-blue {
+        background-color: var(--pagbank-dark-blue);
+      }
+      .text-pagbank-dark-blue {
+        color: var(--pagbank-dark-blue);
+      }
+      .border-pagbank-dark-blue {
+        border-color: var(--pagbank-dark-blue);
+      }
+
+      /* Estilo para a plantinha do simulador */
+      #plant-emoji {
+        font-size: 4rem; /* Tamanho grande para o emoji */
+        transition: transform 0.3s ease-in-out; /* Transição suave para o crescimento */
+      }
+    </style>
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <!-- Cabeçalho -->
+    <header class="bg-pagbank-yellow p-4 shadow-md rounded-b-lg">
+      <div class="container mx-auto flex items-center justify-between">
+        <h1 class="text-3xl font-bold text-pagbank-dark-blue">PagGrow</h1>
+        <div class="text-xl font-semibold text-pagbank-dark-blue">
+          <span id="account-points">0</span> Pontos ✨
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container mx-auto p-4 flex-grow">
+      <!-- Seção de Missões -->
+      <section class="bg-white p-6 rounded-xl shadow-lg mb-6">
+        <h2 class="text-2xl font-semibold text-pagbank-dark-blue mb-4">
+          Missões Semanais 🚀
+        </h2>
+        <div id="missions-list" class="space-y-4">
+          <!-- Missão 1 -->
+          <div
+            class="flex items-center justify-between bg-pagbank-light-gray p-4 rounded-lg shadow-sm"
+          >
+            <p class="text-lg font-medium">Guardar R$10 essa semana</p>
+            <button
+              class="complete-mission-btn bg-pagbank-dark-blue text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors duration-200"
+              data-points="50"
+            >
+              Completar (+50)
+            </button>
+          </div>
+          <!-- Missão 2 -->
+          <div
+            class="flex items-center justify-between bg-pagbank-light-gray p-4 rounded-lg shadow-sm"
+          >
+            <p class="text-lg font-medium">
+              Assistir vídeo sobre "O que é Juros?"
+            </p>
+            <button
+              class="complete-mission-btn bg-pagbank-dark-blue text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors duration-200"
+              data-points="30"
+            >
+              Completar (+30)
+            </button>
+          </div>
+          <!-- Missão 3 -->
+          <div
+            class="flex items-center justify-between bg-pagbank-light-gray p-4 rounded-lg shadow-sm"
+          >
+            <p class="text-lg font-medium">
+              Fazer o quiz sobre "Tipos de Investimento"
+            </p>
+            <button
+              class="complete-mission-btn bg-pagbank-dark-blue text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors duration-200"
+              data-points="40"
+            >
+              Completar (+40)
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Simulador de Investimentos -->
+      <section class="bg-white p-6 rounded-xl shadow-lg mb-6 text-center">
+        <h2 class="text-2xl font-semibold text-pagbank-dark-blue mb-4">
+          Simulador de Investimentos 🌱
+        </h2>
+        <p class="text-gray-600 mb-4">
+          Veja seu dinheiro crescer como uma plantinha!
+        </p>
+        <div id="plant-container" class="my-6">
+          <span id="plant-emoji">🌱</span>
+        </div>
+        <button
+          id="simulate-investment-btn"
+          class="bg-pagbank-yellow text-pagbank-dark-blue font-bold px-6 py-3 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
+        >
+          Simular Crescimento!
+        </button>
+      </section>
+
+      <!-- Seção Trilha de Conhecimento -->
+      <section class="bg-white p-6 rounded-xl shadow-lg mb-6">
+        <h2 class="text-2xl font-semibold text-pagbank-dark-blue mb-4">
+          Trilha de Conhecimento 📚
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a
+            href="#"
+            class="block bg-pagbank-light-gray p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+          >
+            <h3 class="text-lg font-medium text-pagbank-dark-blue">
+              Vídeo: Como Economizar?
+            </h3>
+            <p class="text-sm text-gray-600">
+              Dicas práticas para começar a guardar dinheiro.
+            </p>
+          </a>
+          <a
+            href="#"
+            class="block bg-pagbank-light-gray p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+          >
+            <h3 class="text-lg font-medium text-pagbank-dark-blue">
+              Quiz: Seu Perfil de Investidor
+            </h3>
+            <p class="text-sm text-gray-600">
+              Descubra qual tipo de investimento combina com você.
+            </p>
+          </a>
+          <a
+            href="#"
+            class="block bg-pagbank-light-gray p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+          >
+            <h3 class="text-lg font-medium text-pagbank-dark-blue">
+              Desafio: Orçamento da Mesada
+            </h3>
+            <p class="text-sm text-gray-600">
+              Planeje seus gastos e veja o resultado!
+            </p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Seção Relatórios para Pais -->
+      <section class="bg-white p-6 rounded-xl shadow-lg mb-6 text-center">
+        <h2 class="text-2xl font-semibold text-pagbank-dark-blue mb-4">
+          Relatórios para Pais 👨‍👩‍👧‍👦
+        </h2>
+        <p class="text-gray-600 mb-4">
+          Acompanhe o progresso do seu filho(a) na educação financeira.
+        </p>
+        <button
+          class="bg-pagbank-dark-blue text-white font-bold px-6 py-3 rounded-full shadow-md hover:bg-opacity-90 transition-colors duration-200"
+        >
+          Ver Relatório Completo
+        </button>
+      </section>
+    </main>
+
+    <!-- JavaScript para a funcionalidade -->
+    <script>
+      // Variáveis globais
+      let currentPoints = 0;
+      let plantGrowthStage = 0; // 0: semente, 1: broto, 2: pequena, 3: média, 4: grande
+
+      // Elementos do DOM
+      const accountPointsSpan = document.getElementById("account-points");
+      const missionButtons = document.querySelectorAll(".complete-mission-btn");
+      const simulateInvestmentBtn = document.getElementById(
+        "simulate-investment-btn"
+      );
+      const plantEmoji = document.getElementById("plant-emoji");
+
+      // Função para atualizar os pontos na interface
+      function updatePointsDisplay() {
+        accountPointsSpan.textContent = currentPoints;
+      }
+
+      // Função para completar uma missão
+      function completeMission(event) {
+        const button = event.target;
+        const pointsToAdd = parseInt(button.dataset.points);
+
+        if (!button.disabled) {
+          currentPoints += pointsToAdd;
+          updatePointsDisplay();
+          button.textContent = "Completado! 🎉";
+          button.disabled = true; // Desabilita o botão após completar
+          button.classList.remove(
+            "bg-pagbank-dark-blue",
+            "hover:bg-opacity-90"
+          );
+          button.classList.add("bg-gray-400", "cursor-not-allowed");
+
+          // Opcional: Adicionar uma mensagem de sucesso ou animação
+          console.log(
+            `Missão completada! Ganhos: ${pointsToAdd} pontos. Total: ${currentPoints}`
+          );
+        }
+      }
+
+      // Função para simular o crescimento da plantinha
+      function simulateInvestment() {
+        if (plantGrowthStage < 4) {
+          plantGrowthStage++;
+          let emoji = "🌱"; // Semente
+          let scale = "scale-100";
+
+          switch (plantGrowthStage) {
+            case 1:
+              emoji = "🌿"; // Broto
+              scale = "scale-110";
+              break;
+            case 2:
+              emoji = "🌲"; // Pequena árvore
+              scale = "scale-125";
+              break;
+            case 3:
+              emoji = "🌳"; // Árvore média
+              scale = "scale-140";
+              break;
+            case 4:
+              emoji = "💰"; // Dinheiro (representando grande crescimento/recompensa)
+              scale = "scale-150";
+              // Desabilita o botão após o crescimento máximo
+              simulateInvestmentBtn.textContent = "Crescimento Máximo! 🤑";
+              simulateInvestmentBtn.disabled = true;
+              simulateInvestmentBtn.classList.remove(
+                "bg-pagbank-yellow",
+                "hover:scale-105"
+              );
+              simulateInvestmentBtn.classList.add(
+                "bg-gray-400",
+                "cursor-not-allowed"
+              );
+              break;
+          }
+          plantEmoji.textContent = emoji;
+          plantEmoji.style.transform = scale; // Aplica a escala para simular crescimento
+        }
+      }
+
+      // Adicionar listeners de evento
+      document.addEventListener("DOMContentLoaded", () => {
+        // Inicializa a exibição de pontos
+        updatePointsDisplay();
+
+        // Adiciona listener para cada botão de missão
+        missionButtons.forEach((button) => {
+          button.addEventListener("click", completeMission);
+        });
+
+        // Adiciona listener para o botão de simular investimento
+        simulateInvestmentBtn.addEventListener("click", simulateInvestment);
+      });
+    </script>
+  </body>
+</html>
+�
